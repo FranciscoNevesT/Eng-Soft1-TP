@@ -1,11 +1,11 @@
 # Eng-Soft1-TP
 
 ## Equipe
-.Francisco Neves Tinoco Junior - 2019006604
+- Francisco Neves Tinoco Junior - 2019006604
 
 ## Objetivo:
 
-. Criar um sistema para hospedagem de artigos cientificos.
+- Criar um sistema para hospedagem de artigos cientificos.
 
 ## Features:
 
@@ -18,8 +18,8 @@
 ## Possiveis tecnologias:
 - Front: React
 
-. Back: Node
+- Back: Node
 
-. Banco de dados: SQL
+- Banco de dados: SQL
 
-. Auxiliares: Python, html
+- Auxiliares: Python, html
