@@ -16,7 +16,10 @@
 5. Permitir os usuarios fazerem avaliações.
 
 ## Possiveis tecnologias:
-. Front: React
+- Front: React
+
 . Back: Node
+
 . Banco de dados: SQL
+
 . Auxiliares: Python, html
