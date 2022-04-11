@@ -3,6 +3,7 @@
 ## Equipe
 - Francisco Neves Tinoco Junior - 2019006604
 - Thiago Henrique Moreira Santos - 2019007074
+- Henrique Magalhães de Oliveira Carvalho - 2019006698
 
 ## Objetivo:
 
