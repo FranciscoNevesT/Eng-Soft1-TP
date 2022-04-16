@@ -29,7 +29,8 @@
 
 ## Backlog:
 
-###Historias:
+### Historias:
+
 - Como autor, eu gostaria de poder subir um artigo.
 - Como autor, eu gostaria de poder alterar/deletar um artigo publicado.
 - Como usuario, eu gostaria de pesquisar e baixar um artigo.
@@ -46,3 +47,33 @@
 	- Preparar banco de dados para os artigos e seus metadados [Todos]
 	- Prepara ambiente de desenvolvimento [Thiago]
 	- Preparar a pagina web inicial [Furst]
+
+- Histórias: Como autor, eu gostaria de poder subir um artigo.
+- Tarefas:
+	- Criar e testar rota para dar o upload do artigo em formato pdf [Furst]
+	- Criar o formulario para subir o artigo [Francisco]
+	- Criar e testar rota para pagina que tem os artigos publicados [Thiago]
+
+- Histórias: Como autor, eu gostaria de poder alterar/deletar um artigo publicado.
+- Tarefas:
+	- Criar e testar rota para a alteração do artigo. [Magalhães]
+	- Criar um formulario pre-prenchido para a alteração. [Francisco]
+	- Criar e testar rota para deletar o artigo. [Thiago]
+	- Criar o metodo de atualizar as citações linkadas ao artigo. [Magalhães]
+
+- Histórias: Como usuario, eu gostaria de pesquisar e baixar um artigo.
+- Tarefas:
+	- Criar e testar rota para a pesquisa do artigo. [Magalhães]
+	- Criar um metodo de pesquisa. [Magalhães]
+	- Criar e testar rota para o dowloand do artigo. [Francisco]
+
+- Histórias: Como autor, eu gostaria de poder marcar e vizualizar os outros artigos que eu citei.
+	- Criar uma tabela para citação. [Francisco]
+	- Criar uma vizualização para a relação entre os artigos. [Francisco]
+	- Criar metodos para manter a consitencia entre os artigos citados. [Furst]
+
+- Histórias: Como autor, eu gostaria de ver estatisticas relacionadas aos meus artigos.
+	- Criar e testar rota para as estatisticas. [Thiago]
+	- Criar uma vizualização para as estatisticas. [Furst] 
+	- Criar uma vizualização para as citações. [Furst]
+	- Criar a interface web para os dados. [Thiago,Magalhães]
