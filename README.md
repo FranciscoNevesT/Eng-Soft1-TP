@@ -26,3 +26,23 @@
 - Banco de dados: SQL
 
 - Auxiliares: Python, html
+
+## Backlog:
+
+###Historias:
+- Como autor, eu gostaria de poder subir um artigo.
+- Como autor, eu gostaria de poder alterar/deletar um artigo publicado.
+- Como usuario, eu gostaria de pesquisar e baixar um artigo.
+- Como autor, eu gostaria de poder marcar e vizualizar os outros artigos que eu citei.
+- Como autor, eu gostaria de ver estatisticas relacionadas aos meus artigos.
+- Como usuario, eu gostaria de poder avaliar os artigos.
+- Como usuario, eu gostaria de colocar os artigos em pastas.
+- Como usuario, eu gostaria de ver perfis dos autores.
+- Como usuario, eu gostaria de receber recomendações de artigos.
+- Como usuario, eu gostaria de ver desempenho/estaticas gerais de artigos.
+
+### Sprint 1:
+- Tarefas Técnincas:
+	- Preparar banco de dados para os artigos e seus metadados [Todos]
+	- Prepara ambiente de desenvolvimento [Thiago]
+	- Preparar a pagina web inicial [Furst]
