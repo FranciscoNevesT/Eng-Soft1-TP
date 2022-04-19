@@ -45,7 +45,7 @@
 ### Sprint 1:
 - Tarefas Técnincas:
 	- Preparar banco de dados para os artigos e seus metadados [Todos]
-	- Prepara ambiente de desenvolvimento [Thiago]
+	- Prepara ambiente de desenvolvimento [Thiago] [V]
 	- Preparar a pagina web inicial [Furst]
 
 - Histórias: Como autor, eu gostaria de poder subir um artigo.

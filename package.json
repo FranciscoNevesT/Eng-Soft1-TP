@@ -1,0 +1,26 @@
+{
+  "name": "eng-soft1-tp",
+  "version": "1.0.0",
+  "description": "Trabalho da disciplina de Engenharia de Software",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranciscoNevesT/Eng-Soft1-TP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FranciscoNevesT/Eng-Soft1-TP/issues"
+  },
+  "homepage": "https://github.com/FranciscoNevesT/Eng-Soft1-TP#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.19.0"
+  }
+}
