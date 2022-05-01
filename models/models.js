@@ -12,11 +12,11 @@ class Areas extends Model {};
 class CODIFICACAO extends Model {};
 
 Citacao.init({
-    Citacao_ID : {
+    CITANTE : {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    Artigo_ID: {
+    CITADO: {
         type: DataTypes.INTEGER,
         allowNull: false,
 //        references: {
