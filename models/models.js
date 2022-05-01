@@ -15,10 +15,12 @@ Citacao.init({
     CITANTE : {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true
     },
     CITADO: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true
 //        references: {
 //            model: Artigo,
 //            key: 'ID'
@@ -80,6 +82,7 @@ Areas.init({
     Artigo_ID: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true
 //        references: {
 //            model: Artigo,
 //            key: 'ID'
@@ -87,6 +90,7 @@ Areas.init({
     },
     AREA: {
         type: DataTypes.STRING,
+        primaryKey: true,
         allowNull: false
     }},
     {

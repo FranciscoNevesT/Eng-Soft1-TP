@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/css/formulario.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Pagina do formulario</h1>
+
+    <form>
+        <label for = "artAutor">Autor do aritgo</label>
+        <select id ="artAutor">
+            
+        </select><br><br>
+
+        <label for ="artName">Nome do artigo:</label> 
+        <input type = "text" id = "artName" name = "artName"><br><br>
+
+        <label for ="artDate">Data de Publicação</label>
+        <input type = "date" id = "artDate" name = "artDate"><br><br>
+        
+        
+        <fieldset name = "arts" id = "field_art" class = "field">
+            <legend> Escolha quais artigos foram citados</legend>
+
+
+        </fieldset>
+
+        <label for ="artAnexo">Artigo</label>
+        <input type="file" id = "artAnexo" accept=".pdf">
+
+    </form>
+    <button onclick="enviar()">Enviar</button>
+
+    <script src = "./utils/formulario.js"> </script>
+
+</body>
+</html>
