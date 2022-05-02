@@ -10,7 +10,6 @@ const sequelize = require(`${backdirname}/models/models`);
 searchRouter.get('/search', (req, res) => {
     let { term } = req.query;
     term = term.toLowerCase();
-    console.log("Termo: ", term);
 
     artigos = sequelize.models.Artigo;
 
