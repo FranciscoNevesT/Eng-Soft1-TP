@@ -1,10 +1,12 @@
+var path = require('path');
 var express = require('express');
 var formularioRouter = express.Router();
 
 
-var backdirname = __dirname.split("\\")
-backdirname.pop()
-backdirname = backdirname.join("\\")
+//var backdirname = __dirname.split("/")
+//backdirname.pop()
+//backdirname = backdirname.join("/")
+var backdirname = path.dirname(__dirname);
 
 const app = express();
 app.use(express.static(backdirname))
@@ -12,7 +14,7 @@ app.use(express.static(backdirname))
 
 const sequelize = require(`${backdirname}/models/models`)
 const controleBanco = require(`${backdirname}/public/js/controleBanco`);
-const path = require('path');
+//const path = require('path');
 
 formularioRouter.get("",  function(req,res,next) {
     controleBanco.getArtigos(sequelize,"./data/artigos.json");

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/css/formulario.css">
+    <title>Sai-hub</title>
+    <script src = "./utils/indice.js"> </script>
+</head>
+<body onLoad="populate()">
+    <h1>Sai-hub</h1>
+    <form id="searchform">
+        <input type="text" id="searchinput" name="searchvalue"><br>
+    </form>
+    <button onclick="pesquisar()">Pesquisar</button>
+    <table class="articletable" id="indextable">
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Áreas</th>
+        <th>Data</th>
+    </table>
+
+</body>
+</html>
