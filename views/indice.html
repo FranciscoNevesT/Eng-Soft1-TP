@@ -10,10 +10,10 @@
 </head>
 <body onLoad="populate()">
     <h1>Sai-hub</h1>
-    <form id="searchform">
-        <input type="text" id="searchinput" name="searchvalue"><br>
+    <form action="/buscar/search" id="searchform">
+        <input type="text" name="term" placeholder="Nome do artigo..."><br>
+        <input type="submit" value="Buscar">
     </form>
-    <button onclick="pesquisar()">Pesquisar</button>
     <table class="articletable" id="indextable">
         <th>Título</th>
         <th>Autor</th>
