@@ -1,52 +1,89 @@
-var path = require('path');
 var express = require('express');
 var formularioRouter = express.Router();
+const sequelize = require(`../models/models`)
+const controleBanco = require(`../public/js/controleBanco`);
+const path = require('path');
 
+function addArtigo(sequelize,id,nome,autor_id,data_publi,link,dowloads){
+    sequelize.models.Artigo.create({
+        ID: id,
+        NOME: nome,
+        AUTOR_ID: autor_id,
+        DATA_PUBLI: data_publi,
+        LINK: link,
+        DOWNLOADS: dowloads
+    })
+}
 
-//var backdirname = __dirname.split("/")
-//backdirname.pop()
-//backdirname = backdirname.join("/")
-var backdirname = path.dirname(__dirname);
-
-const app = express();
-app.use(express.static(backdirname))
-
-
-const sequelize = require(`${backdirname}/models/models`)
-const controleBanco = require(`${backdirname}/public/js/controleBanco`);
-//const path = require('path');
+function addCitacao(sequelize,citante,citado){
+    sequelize.models.Citacao.create({
+        CITANTE: citante,
+        CITADO: citado
+    });
+}
 
 formularioRouter.get("",  function(req,res,next) {
     controleBanco.getArtigos(sequelize,"./data/artigos.json");
     controleBanco.getAutores(sequelize,"./data/autores.json");
 
-    res.sendFile(path.resolve(backdirname,'./views/formulario.html'));  
+    res.sendFile(path.resolve(__dirname,'../views/formulario.html'));  
+})
+
+
+formularioRouter.get("/edit/save/:id",  function(req,res,next) {
+    var requests = req.params.id.split("@@@")
+    
+    var artData = requests.shift().split("_")
+
+    sequelize.models.Artigo.destroy({
+        where: {
+            id: artData[0]
+        }
+    }).then(
+        addArtigo(sequelize,artData[0],artData[1],artData[2],artData[3],artData[4],artData[5])
+    );
+
+    var citDeletar = controleBanco.getCitacao(sequelize,artData[0],"");
+
+    citDeletar.then((out) =>{
+        for(var i = 0; i<out.length;i++){
+            sequelize.models.Citacao.destroy({
+                where: {
+                    CITANTE: out[i].CITANTE,
+                    CITADO: out[i].CITADO
+                }
+            })
+        }
+        for(var i = 0; i<requests.length;i++){
+            var artCitado = requests[i];
+
+            addCitacao(sequelize,artData[0],artCitado);
+        }
+    })   
+    
+    res.redirect("/formulario/edit/" + artData[0]);
 })
 
 formularioRouter.get("/edit/:id",  function(req,res,next) {
+    var id = req.params.id;
+    controleBanco.getArtigos(sequelize,"./data/artigos.json");
+    controleBanco.getAutores(sequelize,"./data/autores.json");
+    controleBanco.getCitacao(sequelize,id,"./data/cit" + id + ".json")
 
+    res.sendFile(path.resolve(__dirname,'../views/formulario.html'));  
+})
+
+formularioRouter.get("/add/:id",  function(req,res,next) {
     var requests = req.params.id.split("@@@")
 
     var artData = requests.shift().split("_")
 
-    sequelize.models.Artigo.create({
-        ID: artData[0],
-        NOME: artData[1],
-        AUTOR_ID: artData[2],
-        DATA_PUBLI: artData[3],
-        LINK: artData[4],
-        DOWNLOADS: artData[5]
-    });
-
-    console.log(requests)
+    addArtigo(sequelize,artData[0],artData[1],artData[2],artData[3],artData[4],artData[5]);
 
     for(var i = 0; i<requests.length;i++){
-        var artCitado = requests[i]
+        var artCitado = requests[i];
 
-        sequelize.models.Citacao.create({
-            Citacao_ID: artData[0],
-            Artigo_ID: artCitado
-        });
+        addCitacao(sequelize,artData[0],artCitado);
     }
 
     res.redirect("/");

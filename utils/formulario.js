@@ -1,7 +1,60 @@
-//Criando os elemntos
+async function getJson(path){
+    const response = await fetch(path)
+    const json = await response.json()
+
+    return json
+};
+
+//Carregando os datasetsNecessarios
+const artigosJson = getJson("../../data/artigos.json");
+const autoresJson = getJson("../../data/autores.json");
+
+//Update NOME e DATA
+async function updateEstaticos(artigosJson){
+    const id = parseInt(window.location.href.split("/").pop());
+
+    var json = await artigosJson;
+    var artKeys = Object.keys(json);
+
+    var artSelect;
+    for(var i = 0; i < artKeys.length; i++){
+        if (json[artKeys[i]].ID == id){
+            artSelect = json[artKeys[i]]
+            break;
+        }
+    }
+
+    document.getElementById("artName").value = artSelect.NOME;
+    document.getElementById("artDate").value = artSelect.DATA_PUBLI;
+
+    var options = document.getElementById("artAutor").options;
+    for (var i = 0; i < options.length; i++){
+        if(options[i].id == artSelect.AUTOR_ID){
+            document.getElementById("artAutor").selectedIndex = i;
+        }
+    }
+}
+
+//UPDATE CITACOES
+async function updateChecks(){
+    const id = parseInt(window.location.href.split("/").pop());
+
+    const citJson = await getJson("../../data/cit" + id + ".json");
+    artKeys = Object.keys(citJson);
+
+    for(var i = 0; i < artKeys.length; i++){
+        var checkBox = document.getElementById("check" + citJson[artKeys[i]].CITADO);
+        checkBox.checked = true;
+    }
+}
+
+async function update(artigosJson){
+    updateEstaticos(artigosJson);
+    updateChecks();
+};
 
 
-function addCheckbox(id,value,label_t,name = "artigo"){
+function addCheckbox(id,label_t,name = "artigo"){
     var field = document.getElementById("field_art");
     var div = document.createElement("div");
 
@@ -9,7 +62,6 @@ function addCheckbox(id,value,label_t,name = "artigo"){
 
     checkbox.type = "checkbox";
     checkbox.name = name;
-    checkbox.value = value;
     checkbox.id = id;
 
     var label = document.createElement('label');
@@ -26,7 +78,6 @@ function addCheckbox(id,value,label_t,name = "artigo"){
 }
 
 function addAutor(id,value){
-
     var select = document.getElementById("artAutor");
 
     var newAutor = document.createElement("option");
@@ -38,31 +89,13 @@ function addAutor(id,value){
 
 }
 
-function removeCheckbox(id){
-    const checkbox = document.getElementById(id);
-
-    checkbox.remove();
-
-    
-    const label = document.getElementById("a");
-
-    label.remove()
-}
-
-async function getJson(path){
-    const response = await fetch(path)
-    const json = await response.json()
-
-    return json
-}
-
-
-
-async function artCheckbox(){
-    const json = await getJson("./data/artigos.json")
+async function artCheckboxCit(){
+    const json = await artigosJson;
     const artKeys = Object.keys(json)
 
     var maxID = 0;
+
+    var ids = [];
 
     for(var i = 0; i < json.length; i++){
         var art = json[artKeys[i]];
@@ -75,17 +108,17 @@ async function artCheckbox(){
 
         var nome = art.NOME;
 
-        addCheckbox("check" + i,artID,nome);
+        ids.push(artID);
+
+        addCheckbox("check" + artID,nome);
     }
 
-    console.log(maxID)
-
-    return [json.length,maxID]
+    return [ids,maxID]
 }
 
 
 async function autorOpt(){
-    const json = await getJson("./data/autores.json")
+    const json = await autoresJson
     
     const autorKeys = Object.keys(json)
 
@@ -101,12 +134,20 @@ async function autorOpt(){
     return json.length
 }
 
-autorOpt()
 
-const artSize = artCheckbox();
+const artSize = artCheckboxCit();
 
 
-function enviar(){
+
+artSize.then( (out1) => {
+    autorOpt().then((out) => {
+        if (window.location.pathname.split("/").length == 4){
+            update(artigosJson);
+        }
+    })
+})
+
+async function enviar(){
     var artName = document.getElementById("artName").value;
     var artDate = document.getElementById("artDate").value;
     var artAutor = document.getElementById("artAutor");
@@ -114,8 +155,6 @@ function enviar(){
     var artAutorID = artAutor.options[artAutor.selectedIndex].id; 
 
     artSize.then((out) => {
-        var querys = []
-
         //Adicionando o artigo
 
         if(artName == ""){
@@ -125,19 +164,42 @@ function enviar(){
         if(artDate == ""){
             artDate = "2001-09-17"
         }
+
+        var urlOut = ""
+
+        if(window.location.pathname.split("/").length == 4){
+            urlOut += window.location.pathname.split("/").pop()
+        }
+        else{
+            urlOut += (out[1] + 1)
+        }
         
-        var urlOut = "" + (out[1] + 1) + "_" + artName + "_" + artAutorID + "_" + artDate + "_" + "Placehold" + "_" + 0;
+        urlOut += "_" + artName + "_" + artAutorID + "_" + artDate + "_" + "Placehold" + "_" + 0;
         //Adicionando as citações
         
-        for(var i = 0; i < out[0];i++){
-            var artCitado = document.getElementById("check" + i);
+        for(var i = 0; i < out[0].length;i++){
+
+
+            var artCitado = document.getElementById("check" + out[0][i]);
     
             if(artCitado.checked == true){
-                urlOut = urlOut + "@@@" + artCitado.value
+                urlOut = urlOut + "@@@" + out[0][i]
             }
         }
-        window.location.assign("./formulario/edit/" + urlOut);
+
+        if(window.location.pathname.split("/").length == 4){
+            window.location.assign("../../formulario/edit/save/" + urlOut);
+        }
+        else{   
+            window.location.assign("../../formulario/add/" + urlOut);
+        }
 
     })
     
 }
+
+
+
+
+
+

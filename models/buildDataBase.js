@@ -88,23 +88,23 @@ async function build(){
 
     //Definindo as citações
     sequelize.models.Citacao.create({
-        Citacao_ID: 2,
-        Artigo_ID: 1
+        CITANTE: 2,
+        CITADO: 1
     });
 
     sequelize.models.Citacao.create({
-        Artigo_ID: 5,
-        Citacao_ID: 3
+        CITANTE: 5,
+        CITADO: 3
     });
 
     sequelize.models.Citacao.create({
-        Artigo_ID: 7,
-        Citacao_ID: 3
+        CITANTE: 7,
+        CITADO: 3
     });
 
     sequelize.models.Citacao.create({
-        Artigo_ID: 7,
-        Citacao_ID: 6
+        CITANTE: 7,
+        CITADO: 6
     });
 }
 

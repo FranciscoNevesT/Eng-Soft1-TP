@@ -1,5 +1,4 @@
 const { json } = require("express/lib/response");
-const res = require("express/lib/response");
 var fs = require('fs');
 
 function save_json(json,path){
@@ -11,10 +10,15 @@ function save_json(json,path){
 }
 
 //Dado o id de um artigo, retorna todos os artigos que ele cita
-async function getCitacao(sequelize,id){
-    var query = "Select Artigo_ID,Citacao_ID,Ar.NOME,AU.ID,AU.NOME as Autor From Citacaos as C, Artigos as Ar, Autors as Au Where Artigo_ID = " + id + " AND Citacao_ID = AR.ID AND AUTOR_ID = Au.ID";
+async function getCitacao(sequelize,id,path = ""){
+    var query = "Select * From Citacaos as C WHERE CITANTE = " + id;
     
     const [results, metadata] = await sequelize.query(query);
+
+
+    if(path != ""){
+        save_json(JSON.stringify(results),path);
+    }
 
     return results
 }
