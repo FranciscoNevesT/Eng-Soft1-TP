@@ -166,19 +166,23 @@ async function enviar(){
         }
 
         var urlOut = ""
+        var id;
 
         if(window.location.pathname.split("/").length == 4){
-            urlOut += window.location.pathname.split("/").pop()
+            id = window.location.pathname.split("/").pop()
         }
         else{
-            urlOut += (out[1] + 1)
+            id = (out[1] + 1)
         }
+
+        urlOut += id
         
-        urlOut += "_" + artName + "_" + artAutorID + "_" + artDate + "_" + "Placehold" + "_" + 0;
+        var link =  + id + ".pdf"
+
+        urlOut += "_" + artName + "_" + artAutorID + "_" + artDate + "_" + link + "_" + 0;
         //Adicionando as citações
         
         for(var i = 0; i < out[0].length;i++){
-
 
             var artCitado = document.getElementById("check" + out[0][i]);
     
@@ -187,12 +191,22 @@ async function enviar(){
             }
         }
 
+        
         if(window.location.pathname.split("/").length == 4){
-            window.location.assign("../../formulario/edit/save/" + urlOut);
+            document.getElementById("formArt").action += "/edit_"
+            //window.location.assign("../../formulario/edit/save/" + urlOut);
         }
         else{   
-            window.location.assign("../../formulario/add/" + urlOut);
+            document.getElementById("formArt").action += "/add_"
+            //window.location.assign("../../formulario/add/" + urlOut);
         }
+
+        document.getElementById("formArt").action += urlOut
+
+        document.getElementById("postButton").click();
+
+        window.close();
+
 
     })
     

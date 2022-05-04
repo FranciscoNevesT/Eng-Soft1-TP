@@ -29,10 +29,17 @@
 
         </fieldset><br><br>
 
-        <label for ="artAnexo">Artigo</label>
-        <input type="file" id = "artAnexo" accept=".pdf"><br><br>
-
     </form>
+
+    <form id = "formArt" action="../../formulario/post" enctype="multipart/form-data" method="POST" target="_blank">
+        <label for ="artAnexo">Artigo</label>
+
+        <input type="file" name = "artAnexo" id = "artAnexo" accept=".pdf"><br><br>
+
+        <input type= "submit" id = "postButton" style="display: none;">
+        
+    </form>
+
     <button onclick="enviar()">Enviar</button>
 
     <script src = "../../utils/formulario.js"> </script>

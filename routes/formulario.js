@@ -3,6 +3,10 @@ var formularioRouter = express.Router();
 const sequelize = require(`../models/models`)
 const controleBanco = require(`../public/js/controleBanco`);
 const path = require('path');
+const fs = require('fs')
+
+var formidable = require('formidable');
+const { route } = require('express/lib/application');
 
 function addArtigo(sequelize,id,nome,autor_id,data_publi,link,dowloads){
     sequelize.models.Artigo.create({
@@ -25,10 +29,41 @@ function addCitacao(sequelize,citante,citado){
 formularioRouter.get("",  function(req,res,next) {
     controleBanco.getArtigos(sequelize,"./data/artigos.json");
     controleBanco.getAutores(sequelize,"./data/autores.json");
-
+    
     res.sendFile(path.resolve(__dirname,'../views/formulario.html'));  
 })
 
+formularioRouter.post("/post/:id",function(req,res,next){
+    const form = new formidable.IncomingForm();
+
+    var params = req.params.id.split("_")
+
+    var functionPass = params.shift();
+
+
+    form.parse(req, (err, fields, files) => {
+
+        const oldpath = files.artAnexo.filepath;
+        const newpath = path.join(__dirname, "../artigos/" + params[0] + ".pdf");
+
+        fs.copyFile(oldpath, newpath, (err) => {
+            if(err){
+                console.log(err)
+            }
+        });
+
+        
+        params = params.join("_");
+
+        if(functionPass == "add"){
+            res.redirect("../../formulario/add/" + params);
+        }else{
+
+            res.redirect("../../formulario/edit/save/" + params);
+        }
+    });
+    
+})
 
 formularioRouter.get("/edit/save/:id",  function(req,res,next) {
     var requests = req.params.id.split("@@@")
@@ -60,8 +95,15 @@ formularioRouter.get("/edit/save/:id",  function(req,res,next) {
             addCitacao(sequelize,artData[0],artCitado);
         }
     })   
+
+    fs.unlink("./data/cit" + artData[0] + ".json", (err) =>{
+        if (err){
+            console.log(err)
+            return
+        }
+    })
     
-    res.redirect("/formulario/edit/" + artData[0]);
+    res.redirect("/");
 })
 
 formularioRouter.get("/edit/:id",  function(req,res,next) {
