@@ -205,9 +205,6 @@ async function enviar(){
 
         document.getElementById("postButton").click();
 
-        window.close();
-
-
     })
     
 }
