@@ -36,6 +36,8 @@ formularioRouter.get("",  function(req,res,next) {
 formularioRouter.post("/post/:id",function(req,res,next){
     const form = new formidable.IncomingForm();
 
+    console.log(req.params.id)
+
     var params = req.params.id.split("_")
 
     var functionPass = params.shift();

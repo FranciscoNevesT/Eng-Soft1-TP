@@ -1,3 +1,18 @@
+var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+
+
+
 async function getJson(path){
     const response = await fetch(path)
     const json = await response.json()
@@ -55,12 +70,13 @@ async function update(artigosJson){
 
 
 function addCheckbox(id,label_t,name = "artigo"){
-    var field = document.getElementById("field_art");
+    var field = document.getElementById("checkboxes");
     var div = document.createElement("div");
 
     var checkbox = document.createElement("input");
 
     checkbox.type = "checkbox";
+    checkbox.class = "form-group"
     checkbox.name = name;
     checkbox.id = id;
 
