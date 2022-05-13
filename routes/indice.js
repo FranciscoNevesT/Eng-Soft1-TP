@@ -1,13 +1,16 @@
-var path = require('path');
-var express = require('express');
-var indiceRouter = express.Router();
+const path = require('path');
+const express = require('express');
 
-var backdirname = path.dirname(__dirname);
-const app = express();
-app.use(express.static(backdirname))
+//const app = express();
+//app.use(express.static(backdirname))
+const backdirname = path.dirname(__dirname);
+const indiceRouter = express.Router();
+const sequelize = require(`${backdirname}/models/models`);
 
 indiceRouter.get("", function(req, res, next) {
-    res.sendFile(path.resolve(backdirname,'./views/indice.html'));
+    artigos = sequelize.models.Artigo;
+    artigos.findAll().then(
+	arts=> res.render(path.resolve(backdirname,'./views/indice.html'), {arts}));
 });
 
 module.exports = indiceRouter;
