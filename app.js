@@ -23,6 +23,7 @@ var formularioRouter = require("./routes/formulario");
 var searchRouter = require("./routes/busca");
 var vizualizacaoRoter = require("./routes/vizualizacao")
 var deleteArticleRouter = require("./routes/deleteArticle");
+var dowloadeRouter = require("./routes/dowload");
 
 
 app.use("/formulario",formularioRouter);
@@ -32,6 +33,7 @@ app.use("/buscar", searchRouter);
 app.use("/vizu",vizualizacaoRoter);
 
 app.use(deleteArticleRouter);
+app.use(dowloadeRouter);
 
 //Rota "catchall" de teste 
 //app.get('/', (req, res) => {
