@@ -19,14 +19,16 @@ function addArtigo(sequelize,id,nome,autor_id,data_publi,link,dowloads){
     })
 }
 
-function citacaoValida(sequelize, data_citante, citado) {
+function citacaoValida(sequelize, artData, citado) {
+    var data_citante = artData[3]
     artigos = sequelize.models.Artigo;
     artigos.findAll({ where: { ID: citado } }).then(
     (artigoCitado) => 
     {
-        console.log(artigoCitado)
-        console.log(data_citante)
-        return artigoCitado.DATA_PUBLI < data_citante;
+        var data_publi = artigoCitado[0].dataValues.DATA_PUBLI;
+        if(data_publi == null ||  data_publi < data_citante){
+            addCitacao(sequelize,artData[0],citado);
+        }
     });
 }
 
@@ -46,8 +48,6 @@ formularioRouter.get("",  function(req,res,next) {
 
 formularioRouter.post("/post/:id",function(req,res,next){
     const form = new formidable.IncomingForm();
-
-    console.log(req.params.id)
 
     var params = req.params.id.split("_")
 
@@ -101,14 +101,14 @@ formularioRouter.get("/edit/save/:id",  function(req,res,next) {
                     CITADO: out[i].CITADO
                 }
             })
+
+        
         }
         for(var i = 0; i<requests.length;i++){
             var artCitado = requests[i];
-
-            if (citacaoValida(sequelize, artData[2], artCitado)) {
-                addCitacao(sequelize,artData[0],artCitado);
-            }
+            citacaoValida(sequelize,artData,artCitado)
         }
+        
     })   
 
     fs.unlink("./data/cit" + artData[0] + ".json", (err) =>{
@@ -139,10 +139,7 @@ formularioRouter.get("/add/:id",  function(req,res,next) {
 
     for(var i = 0; i<requests.length;i++){
         var artCitado = requests[i];
-
-        if (citacaoValida(sequelize, artData[2], artCitado)) {
-            addCitacao(sequelize,artData[0],artCitado);
-        }
+        citacaoValida(sequelize, artData, artCitado)
     }
 
     res.redirect("/");

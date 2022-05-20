@@ -1,4 +1,3 @@
-
 async function getJson(path){
     const response = await fetch(path)
     const json = await response.json()
@@ -47,6 +46,8 @@ async function updateGraph(){
     var elements = [];
 
     vizuJson.then((result) =>{
+
+        console.log(result)
 
         for(var i = 0; i < result.length; i++){
             if (selectAutor == result[i].A_CITANTE){
