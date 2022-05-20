@@ -24,6 +24,7 @@ var searchRouter = require("./routes/busca");
 var vizualizacaoRoter = require("./routes/vizualizacao")
 var deleteArticleRouter = require("./routes/deleteArticle");
 var dowloadeRouter = require("./routes/dowload");
+var statsRouter = require("./routes/stats");
 
 
 app.use("/formulario",formularioRouter);
@@ -31,6 +32,7 @@ app.use("/", indiceRouter);
 app.use("/getarticles", getArtigosRouter);
 app.use("/buscar", searchRouter);
 app.use("/vizu",vizualizacaoRoter);
+app.use(statsRouter);
 
 app.use(deleteArticleRouter);
 app.use(dowloadeRouter);
