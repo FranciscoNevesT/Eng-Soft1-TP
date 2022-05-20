@@ -16,17 +16,17 @@ function addArtigo(sequelize,id,nome,autor_id,data_publi,link,dowloads){
         DATA_PUBLI: data_publi,
         LINK: link,
         DOWNLOADS: dowloads
-    })
+    });
 }
 
 function citacaoValida(sequelize, data_citante, citado) {
     artigos = sequelize.models.Artigo;
     artigos.findAll({ where: { ID: citado } }).then(
-    (artigoCitado) => 
-        console.log(artigoCitado)
-        console.log(data_citante)
-        return artigoCitado.DATA_PUBLI < data_citante;
-    );
+        (artigoCitado) => {
+            console.log(artigoCitado);
+            console.log(data_citante);
+            return artigoCitado.DATA_PUBLI < data_citante;
+    });
 }
 
 function addCitacao(sequelize,citante,citado){
