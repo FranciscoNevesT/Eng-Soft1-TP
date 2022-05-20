@@ -9,6 +9,13 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+//Configuração do parser
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+
+
 // Rotas
 var indiceRouter = require("./routes/indice");
 var getArtigosRouter = require("./routes/getArtigos");
