@@ -117,6 +117,7 @@ async function artCheckboxCit(){
         var art = json[artKeys[i]];
 
         var artID = art.ID;
+        var artDate = art.DATA_PUBLI;
 
         if(maxID < parseInt(artID)){
             maxID = parseInt(artID);
@@ -124,7 +125,7 @@ async function artCheckboxCit(){
 
         var nome = art.NOME;
 
-        ids.push(artID);
+        ids.push([artID, artDate]);
 
         addCheckbox("check" + artID,nome);
     }
@@ -200,10 +201,16 @@ async function enviar(){
         
         for(var i = 0; i < out[0].length;i++){
 
-            var artCitado = document.getElementById("check" + out[0][i]);
+            var artCitado = document.getElementById("check" + out[0][i][0]);
     
             if(artCitado.checked == true){
-                urlOut = urlOut + "@@@" + out[0][i]
+                if (artDate < out[0][i][1]) {
+                    alert("Citação inválida: artigo citado ainda não fora publicado!");
+                    return;
+                }
+                else {
+                    urlOut = urlOut + "@@@" + out[0][i][0];
+                }
             }
         }
 
