@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <script src='../../public/js/cytoscape.js'></script>    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/formulario.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>vizualizacao</title>
+</head>
+<style>
+    #cy {
+        width: 90%;
+        height: 90%;
+        position: absolute;
+        top: 100px;
+        left: 0px;
+    }
+</style>
+
+<body>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="artAutor">Autor</label>
+        </div>
+        <select class="custom-select" id="artAutor">
+        </select>
+      </div>
+    <div id="cy"></div>
+    <script src="../../utils/vizualizacao.js"></script>
+</body>
+</html>

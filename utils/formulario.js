@@ -152,6 +152,7 @@ async function autorOpt(){
 }
 
 
+
 const artSize = artCheckboxCit();
 
 
