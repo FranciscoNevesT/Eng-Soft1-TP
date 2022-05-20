@@ -26,7 +26,7 @@ var deleteArticleRouter = require("./routes/deleteArticle");
 var dowloadeRouter = require("./routes/dowload");
 var statsRouter = require("./routes/stats");
 var myArticlesRouter = require("./routes/meusArtigos");
-
+var errorRouter = require('./routes/errorRouter.js');
 
 app.use("/formulario",formularioRouter);
 app.use("/", indiceRouter);
@@ -35,9 +35,12 @@ app.use("/buscar", searchRouter);
 app.use("/vizu",vizualizacaoRoter);
 app.use(statsRouter);
 app.use(myArticlesRouter);
-
 app.use(deleteArticleRouter);
 app.use(dowloadeRouter);
+
+//404 page
+app.use(errorRouter);
+
 
 //Rota "catchall" de teste 
 //app.get('/', (req, res) => {

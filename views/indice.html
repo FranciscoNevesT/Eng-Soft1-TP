@@ -59,39 +59,39 @@
 	    </tr>
 	</thead>
 	<tbody>
-            <% if(arts.length>0) {%>
-                <% for(var i=0; i<arts.length; i++) {%>
-                    <tr>
-                        <td><a href="/stats/<%= arts[i].ID %>"><%= arts[i].TITULO %></a></td>
-                        <td><%= arts[i].NOME %></td>
-                        <td><%= arts[i].DATA_PUBLI %></td>
-                        <td><%= arts[i].DOWNLOADS %></td>
-
-                        
-                        <td>
-                            <form action="/dowload" method="POST">
-                                <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
-                                <!-- <button type="submit" class="fa fa-download"></button> -->
-                                <button type="submit" class="btn btn-outline-success noHover"><img src="../public/images/icons8-download-24.png" alt="" ></button>
-                            </form>
-                        </td>
-
-                        <td>
-                            <form action="/deletearticle" method="POST">
-                                <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
-                                <button type="submit" class="btn btn-outline-danger noHover"><img src="../public/images/icons8-trash-24.png" alt="" ></button>
-                            </form>
-                        </td>
-
-
-                    </tr>
-                <% } %>
-            <% } else { %>
-                <div class="alert alert-light alert-dismissible fade show" role="alert">
-                    No articles available.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+        <% if(arts.length>0) {%>
+            <% for(var i=0; i<arts.length; i++) {%>
+                <tr>
+                    <td><a href="/stats/<%= arts[i].ID %>"><%= arts[i].TITULO %></a></td>
+                    <td><%= arts[i].NOME %></td>
+                    <td><%= arts[i].DATA_PUBLI %></td>
+                    <td><%= arts[i].DOWNLOADS %></td>
+        
+                    
+                    <td>
+                        <form action="/dowload" method="POST">
+                            <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
+                            <!-- <button type="submit" class="fa fa-download"></button> -->
+                            <button type="submit" class="btn btn-outline-success noHover"><img src="../public/images/icons8-download-24.png" alt="" ></button>
+                        </form>
+                    </td>
+        
+                    <td>
+                        <form action="/deletearticle" method="POST">
+                            <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
+                            <button type="submit" class="btn btn-outline-danger noHover"><img src="../public/images/icons8-trash-24.png" alt="" ></button>
+                        </form>
+                    </td>
+        
+        
+                </tr>
             <% } %>
+        <% } else { %>
+            <div class="alert alert-light alert-dismissible fade show" role="alert">
+                No articles available.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
         </tbody>
 	</tbody>
 
