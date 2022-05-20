@@ -74,18 +74,27 @@
                         <td><%= arts[i].DOWNLOADS %></td>
 
                         <td>
-                            <form action="/dowload" method="POST">
-                                <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
-                                <!-- <button type="submit" class="fa fa-download"></button> -->
-                                <button type="submit" class="btn btn-outline-success noHover"><img src="../public/images/icons8-download-24.png" alt="" ></button>
-                            </form>
-                        </td>
-            
-                        <td>
-                            <form action="/deletearticle" method="POST">
-                                <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
-                                <button type="submit" class="btn btn-outline-danger noHover"><img src="../public/images/icons8-trash-24.png" alt="" ></button>
-                            </form>
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item">
+                                    <form action="/dowload" method="POST">
+                                        <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
+                                        <!-- <button type="submit" class="fa fa-download"></button> -->
+                                        <button type="submit" class="btn btn-outline-success noHover"><img src="../public/images/icons8-download-24.png" alt="" ></button>
+                                    </form>
+                                </li>
+                                <li class="list-inline-item">
+                                    <form action="/formulario/edit/<%= arts[i].ID %>" method="GET">
+                                        <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
+                                        <button type="submit" class="btn btn-outline-secondary noHover"><img src="../public/images/icons8-edit-24.png" alt="" ></button>
+                                    </form> 
+                                </li>
+                                <li class="list-inline-item">
+                                    <form action="/deletearticle" method="POST">
+                                        <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
+                                        <button type="submit" class="btn btn-outline-danger noHover"><img src="../public/images/icons8-trash-24.png" alt="" ></button>
+                                    </form>
+                                </li>
+                            </ul>
                         </td>
 
                     </tr>
