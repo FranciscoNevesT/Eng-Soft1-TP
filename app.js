@@ -9,17 +9,27 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
+//Configuração do parser
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+
+
 // Rotas
 var indiceRouter = require("./routes/indice");
 var getArtigosRouter = require("./routes/getArtigos");
 var formularioRouter = require("./routes/formulario");
 var searchRouter = require("./routes/busca");
+var deleteArticleRouter = require("./routes/deleteArticle");
+
 
 app.use("/formulario",formularioRouter);
 app.use("/", indiceRouter);
 app.use("/getarticles", getArtigosRouter);
 app.use("/buscar", searchRouter);
 
+app.use(deleteArticleRouter);
 
 //Rota "catchall" de teste 
 //app.get('/', (req, res) => {
