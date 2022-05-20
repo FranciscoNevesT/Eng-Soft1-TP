@@ -19,6 +19,17 @@ function addArtigo(sequelize,id,nome,autor_id,data_publi,link,dowloads){
     })
 }
 
+function citacaoValida(sequelize, data_citante, citado) {
+    artigos = sequelize.models.Artigo;
+    artigos.findAll({ where: { ID: citado } }).then(
+    (artigoCitado) => 
+    {
+        console.log(artigoCitado)
+        console.log(data_citante)
+        return artigoCitado.DATA_PUBLI < data_citante;
+    });
+}
+
 function addCitacao(sequelize,citante,citado){
     sequelize.models.Citacao.create({
         CITANTE: citante,
@@ -94,7 +105,9 @@ formularioRouter.get("/edit/save/:id",  function(req,res,next) {
         for(var i = 0; i<requests.length;i++){
             var artCitado = requests[i];
 
-            addCitacao(sequelize,artData[0],artCitado);
+            if (citacaoValida(sequelize, artData[2], artCitado)) {
+                addCitacao(sequelize,artData[0],artCitado);
+            }
         }
     })   
 
@@ -127,7 +140,9 @@ formularioRouter.get("/add/:id",  function(req,res,next) {
     for(var i = 0; i<requests.length;i++){
         var artCitado = requests[i];
 
-        addCitacao(sequelize,artData[0],artCitado);
+        if (citacaoValida(sequelize, artData[2], artCitado)) {
+            addCitacao(sequelize,artData[0],artCitado);
+        }
     }
 
     res.redirect("/");
