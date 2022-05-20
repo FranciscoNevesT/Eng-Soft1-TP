@@ -72,14 +72,14 @@
                         <form action="/dowload" method="POST">
                             <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
                             <!-- <button type="submit" class="fa fa-download"></button> -->
-                            <button type="submit" class="btn btn-outline-success noHover"><img src="../public/images/icons8-download-24.png" alt="" ></button>
+                            <button type="submit" class="btn btn-outline-success noHover" data-toggle="tooltip" data-placement="top" title="Download"><img src="../public/images/icons8-download-24.png" alt="" ></button>
                         </form>
                     </td>
         
                     <td>
                         <form action="/deletearticle" method="POST">
                             <input type="hidden" value="<%= arts[i].ID %>" name="articleId">
-                            <button type="submit" class="btn btn-outline-danger noHover"><img src="../public/images/icons8-trash-24.png" alt="" ></button>
+                            <button type="submit" class="btn btn-outline-danger noHover" data-toggle="tooltip" data-placement="top" title="Excluir"><img src="../public/images/icons8-trash-24.png" alt="" ></button>
                         </form>
                     </td>
         
