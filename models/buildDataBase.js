@@ -107,6 +107,94 @@ async function build(){
         CITANTE: 7,
         CITADO: 6
     });
+
+
+    //Definindo os downloads
+    for(var i=0; i<7; i++){
+        sequelize.models.Download.create({
+            ID:i,
+            Artigo_ID: 7,
+            DATA: '2022-01-17'
+        });
+    }
+    for(var i=0; i<12; i++){
+        sequelize.models.Download.create({
+            ID:i+7,
+            Artigo_ID: 7,
+            DATA: '2022-02-17'
+        });
+    }
+    for(var i=0; i<4; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12,
+            Artigo_ID: 7,
+            DATA: '2022-03-17'
+        });
+    }
+    for(var i=0; i<17; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4,
+            Artigo_ID: 7,
+            DATA: '2022-04-17'
+        });
+    }
+    for(var i=0; i<34; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17,
+            Artigo_ID: 7,
+            DATA: '2022-05-17'
+        });
+    }
+    for(var i=0; i<8; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17+34,
+            Artigo_ID: 7,
+            DATA: '2022-06-17'
+        });
+    }
+    for(var i=0; i<3; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17+34+8,
+            Artigo_ID: 7,
+            DATA: '2022-07-17'
+        });
+    }
+    for(var i=0; i<5; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17+34+8+3,
+            Artigo_ID: 7,
+            DATA: '2022-08-17'
+        });
+    }
+    for(var i=0; i<10; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17+34+8+3+5,
+            Artigo_ID: 7,
+            DATA: '2022-09-17'
+        });
+    }
+    for(var i=0; i<2; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17+34+8+3+5+10,
+            Artigo_ID: 7,
+            DATA: '2022-10-17'
+        });
+    }
+    for(var i=0; i<23; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17+34+8+3+5+10+2,
+            Artigo_ID: 7,
+            DATA: '2022-11-17'
+        });
+    }
+    for(var i=0; i<1; i++){
+        sequelize.models.Download.create({
+            ID:i+7+12+4+17+34+8+3+5+10+2+23,
+            Artigo_ID: 7,
+            DATA: '2022-12-17'
+        });
+    }
+
 }
 
 build()
