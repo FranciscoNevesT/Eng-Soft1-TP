@@ -55,15 +55,18 @@
         <script>
             const ctx = document.getElementById('myChart').getContext('2d');
             const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-            console.log(labels)
             const data = '<%= downloadPerMonth %>';
+            let dataSplit = data.split(',');
+            for(var i=0; i<dataSplit.length; i++){
+                dataSplit[i] = parseInt(dataSplit[i]);
+            }
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
                         label: '# of Downloads',
-                        data: data,                
+                        data: dataSplit,                
                         borderWidth: 1
                     }]
                 },
