@@ -10,6 +10,7 @@ class Artigo extends Model {};
 class Autor extends Model {};
 class Areas extends Model {};
 class CODIFICACAO extends Model {};
+class Download extends Model {};
 
 Citacao.init({
     CITANTE : {
@@ -115,4 +116,28 @@ CODIFICACAO.init({
         sequelize,
         modelName: 'CODIFICACAO'
 });
+
+
+Download.init({
+    ID: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+        primaryKey: true
+    },
+    Artigo_ID: {
+        type: DataTypes.STRING,
+        allowNull: false
+//        references: {
+//            model: Artigo
+//        }
+    },
+    DATA: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    }},
+    {
+        sequelize,
+        modelName: 'Download'
+});
+
 module.exports = sequelize;

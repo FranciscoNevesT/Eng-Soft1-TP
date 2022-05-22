@@ -9,5 +9,5 @@ const dowloadController = require('../controllers/dowload');
 const sequelize = require(`${backdirname}/models/models`);
 
 
-router.post('/dowload', dowloadController.postDeleteArticle);
+router.post('/dowload', dowloadController.postDowload);
 module.exports = router;

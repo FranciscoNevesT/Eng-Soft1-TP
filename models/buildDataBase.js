@@ -6,6 +6,7 @@ async function build(){
     await sequelize.models.Autor.sync();
     await sequelize.models.Areas.sync();
     await sequelize.models.CODIFICACAO.sync();
+    await sequelize.models.Download.sync();
 
     //Definindo os autores    
     sequelize.models.Autor.create({
