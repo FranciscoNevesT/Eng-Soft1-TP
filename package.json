@@ -19,6 +19,7 @@
   "homepage": "https://github.com/FranciscoNevesT/Eng-Soft1-TP#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "chart.js": "^3.7.1",
     "ejs": "^3.1.7",
     "express": "^4.17.3",
     "formidable": "^2.0.1",
