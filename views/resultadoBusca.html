@@ -54,7 +54,7 @@
             <% if(arts.length>0) {%>
                 <% for(var i=0; i<arts.length; i++) {%>
                     <tr>
-                        <td><a href="/stats/<%= arts[i].ID %>"><%= arts[i].TITULO %></a></td>
+                        <td><a href="/stats/<%= arts[i].ID %>" style="text-decoration:none"><%= arts[i].TITULO %></a></td>
                         <td><%= arts[i].NOME %></td>
                         <td><%= arts[i].DATA_PUBLI %></td>
                         <td><%= arts[i].DOWNLOADS %></td>
