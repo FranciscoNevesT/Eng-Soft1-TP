@@ -81,7 +81,7 @@ formularioRouter.post("/post/:id",function(req,res,next){
 formularioRouter.get("/edit/save/:id",  function(req,res,next) {
     var requests = req.params.id.split("@@@")
     
-    var artData = requests.shift().split("_")
+    var artData = requests.shift().split("_");
 
     sequelize.models.Artigo.destroy({
         where: {

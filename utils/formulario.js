@@ -1,4 +1,5 @@
 var expanded = false;
+var nDownloads = 0;
 
 function showCheckboxes() {
   var checkboxes = document.getElementById("checkboxes");
@@ -38,6 +39,8 @@ async function updateEstaticos(artigosJson){
             break;
         }
     }
+
+    nDownloads = artSelect.DOWNLOADS;
 
     document.getElementById("artName").value = artSelect.NOME;
     document.getElementById("artDate").value = artSelect.DATA_PUBLI;
@@ -197,7 +200,7 @@ async function enviar(){
         
         var link =  + id + ".pdf"
 
-        urlOut += "_" + artName + "_" + artAutorID + "_" + artDate + "_" + link + "_" + 0;
+        urlOut += "_" + artName + "_" + artAutorID + "_" + artDate + "_" + link + "_" + nDownloads;
         //Adicionando as citações
         
         for(var i = 0; i < out[0].length;i++){
