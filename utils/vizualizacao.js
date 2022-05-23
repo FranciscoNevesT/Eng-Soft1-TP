@@ -23,6 +23,7 @@ function addAutor(id,value){
     select.appendChild(newAutor);
 
 }
+
 async function autorOpt(){
     const json = await autoresJson
     
@@ -47,12 +48,23 @@ async function updateGraph(){
 
     vizuJson.then((result) =>{
 
-        console.log(result)
+        console.log(selectAutor)
 
         for(var i = 0; i < result.length; i++){
-            if (selectAutor == result[i].A_CITANTE){
-                elements.push({data: {id: result[i].N_CITANTE,colored: true}});
-                elements.push({data: {id: result[i].N_CITADO},});
+
+            if(selectAutor == result[i].A_CITANTE || selectAutor == result[i].A_CITADO){
+
+                var colored1 = false;
+                var colored2 = false;
+
+                if(selectAutor == result[i].A_CITANTE){
+                    colored1 = true
+                }
+                if(selectAutor == result[i].A_CITADO){
+                    colored2 = true
+                }
+                elements.push({data: {id: result[i].N_CITANTE,colored: colored1}});
+                elements.push({data: {id: result[i].N_CITADO,colored: colored2}});
                 elements.push({
                     data: {
                     id: ''+result[i].N_CITANTE+result[i].N_CITADO,
@@ -61,19 +73,6 @@ async function updateGraph(){
                     }
                 })
             }
-
-            if (selectAutor == result[i].A_CITADO){
-                elements.push({data: {id: result[i].N_CITANTE}});
-                elements.push({data: {id: result[i].N_CITADO,colored: true}});
-                elements.push({
-                    data: {
-                    id: ''+result[i].N_CITANTE+result[i].N_CITADO,
-                    source: result[i].N_CITANTE,
-                    target: result[i].N_CITADO
-                    }
-                })
-            }
-
         }
 
         var style = [ // the stylesheet for the graph
@@ -94,8 +93,8 @@ async function updateGraph(){
             selector: 'edge',
             style: {
                 'width': 3,
-                'line-color': '#ccc',
-                'target-arrow-color': '#ccc',
+                'line-color': "#000",
+                'target-arrow-color': '#000',
                 'target-arrow-shape': 'triangle',
                 'curve-style': 'bezier'
             }
@@ -112,6 +111,10 @@ async function updateGraph(){
         }).run();
 
     })
+}
+
+function returnButton(){
+    window.location.assign("/");
 }
 
 
